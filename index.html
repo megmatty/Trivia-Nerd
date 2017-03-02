@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+
+<body>
+
+<div id="example"></div>
+	<div id="results">
+
+		<p>Question: <span id="q"></span></p>
+
+		<button class="answer-buttons" id="mc-1">Answer</button>
+		<button class="answer-buttons" id="mc-2">Answer</button>
+		<button class="answer-buttons" id="mc-3">Answer</button>
+		<button class="answer-buttons" id="mc-4">Answer</button>
+
+		<!-- hidden div to hold right answer in case of unicode -->
+		<div id="correct-holder" class="hide"></div>
+
+		<div class="feedback"><span id="correct"></span></div>
+
+		<button type="submit" id="next">Get Next</button>
+
+	</div>
+
+	<div class="hide win-screen" id="winner">You win all the things!</div>
+
+ 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script> 
+ 	<script type="text/javascript" src="app.js" ></script>
+</body>
+</html>

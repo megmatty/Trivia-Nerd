@@ -1,0 +1,42 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 1.5em;
+}
+
+.feedback {
+	height: 75px;
+	width: 400px;
+}
+
+#correct {
+	margin-top: 35px;
+	display: block;
+	color: purple;
+	font-weight: bold;
+}
+
+.hide {
+	display: none;
+}
+
+.answer-buttons, #next {
+	padding: 10px;
+	font-size: 0.6em;
+}
+
+#results {
+	padding: 20px 10px;
+}
+
+#results p {
+	padding-bottom: 20px;
+}
+
+.win-screen {
+	padding: 30px;
+	font-size: 2em;
+	
+}
