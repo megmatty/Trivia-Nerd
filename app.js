@@ -1,4 +1,4 @@
-var url = "https://www.opentdb.com/api.php?amount=10&type=multiple"; //gets mc questions
+var url = "https://opentdb.com/api.php?amount=10&type=multiple"; //gets mc questions
 
 	var response; //holds response data
 	var counter = 0; //counter for getting next question
@@ -79,9 +79,19 @@ $('.answer-buttons').click(function(event) {
 	    return val;
 	}
 
-$('button').click(function(event) {
-	$('#example').load('example.html');
+// $('button').click(function(event) {
+// 	$('#example').load('example.html');
+// });
+
+$('#category-1').on('click', function(event) {
+	url = url + "&category=9";
+	$.getJSON(url, getQuestions);
 });
+
+
+
+//make simple object to match category name to the category id from OTDB
+//click handler for "this" button that pulls from that object by matching the text
 
 
 
