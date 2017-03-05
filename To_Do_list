@@ -1,0 +1,22 @@
+//Features
+
+	//Category randomizer for "random" category button
+		//randomly select index of one of the buttons
+		//get its text
+		//get category Id & pass to url
+
+
+
+//Things to Add to LocalStorage
+	window.localStorage.setItem
+	//on page load
+
+	//Session token
+		if user has token, pull it
+		if no token, set one
+
+	//Title-rank i.e. object or array of rank values
+
+		 var ranks = ['ninja','general','queen'];
+
+		{user: 'niko', rank: 'ninja', id: '324', lastPlayed: 2/3/15} //player in localstorage
