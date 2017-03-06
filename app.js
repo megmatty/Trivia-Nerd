@@ -2,7 +2,7 @@
 
 
 
-var url = "https://opentdb.com/api.php?amount=10&type=multiple"; //gets mc questions
+var url = "https://opentdb.com/api.php?amount=12&type=multiple"; //gets mc questions
 
 var response; //holds response data
 var counter = 0; //counter for getting next question
@@ -10,7 +10,6 @@ var uniqueRandoms = []; //empty array for random numbers
 var numRandoms = 4; //how many numbers do you want (1-4)
 var correct = 0;
 var incorrect = 0;
-
 
 //AJAX call
 
@@ -44,16 +43,18 @@ function buildQuestion(num) {
 
 //Get Next Button
 function nextQuestion() { //next button
-	if (counter <=8) {
+	if (counter <=10) {
 		counter = (counter + 1); //advance counter by 1
-	} else if (counter >=9) {
+		buildQuestion(counter);
+	} else if (counter >=11) {
 		counter = 0; //reset counter
-		$('#game').toggleClass('hide'); //hide question area
+		$('#game').fadeOut('slow').css('display', 'none'); //hide question area
+		$('#game-end').toggleClass('hide');
 	}
 
 	$('.answer-buttons').removeClass('green-button');
 	$('.answer-buttons').removeClass('red-button');
-	buildQuestion(counter);
+
 
 }; //in final build, this should automatically advance without button
 
@@ -72,6 +73,7 @@ $('.answer-buttons').click(function(event) {
 			nextQuestion(); //get next question
 		});
 		correct++;
+		$('#score-bar').attr('value', (correct * 10) );
 	} else {
 		$(this).addClass('red-button').stop().delay(1200).queue(function() { //delay
 			$('.answer-buttons').filter(function() {
@@ -85,34 +87,27 @@ $('.answer-buttons').click(function(event) {
 
 		incorrect++;
 	}
-	// displayScore(); //score
 
 });
-
-// function displayScore() { //displays score
-// 	score = correct / (correct + incorrect);
-// 	console.log(score);
-// 	console.log(correct * 10);
-// }
 
 
 //Random number generator for multiple choice answers - thanks stackoverflow!
 
-	function makeUniqueRandom() {
-	    // refill the array if needed
-	    if (!uniqueRandoms.length) { //if array is not full
-	    	for (var i = 0; i < numRandoms; i++) {
-	    		uniqueRandoms.push(i); //push the numbers into the array
-	    	}
-	    }
-	    var index = Math.floor(Math.random() * uniqueRandoms.length); 
-	    var val = uniqueRandoms[index]; //gets a number from array by a random index
+function makeUniqueRandom() {
+    // refill the array if needed
+    if (!uniqueRandoms.length) { //if array is not full
+    	for (var i = 0; i < numRandoms; i++) {
+    		uniqueRandoms.push(i); //push the numbers into the array
+    	}
+    }
+    var index = Math.floor(Math.random() * uniqueRandoms.length); 
+    var val = uniqueRandoms[index]; //gets a number from array by a random index
 
-	    //removes that value from the array
-	    uniqueRandoms.splice(index, 1);
+    //removes that value from the array
+    uniqueRandoms.splice(index, 1);
 
-	    return val;
-	}
+    return val;
+}
 
 //Category Selector
 $('.category').on('click', function(event) {
@@ -123,17 +118,18 @@ $('.category').on('click', function(event) {
 		}
 	}
 	console.log(url);
-
-	$.getJSON(url, getQuestions);
-	counter = 0;
+	$.getJSON(url, getQuestions); //new AJAX call for that category
+	counter = 0; //reset all counters and scores
 	correct = 0;
 	incorrect = 0;
 	buildQuestion(counter);
-	$(this).addClass('green-button');
+	$('.category').removeClass('green-button'); //remove class if they switch buttons
+	$(this).toggleClass('green-button'); //toggle green on selection
 });
 
 
-//Hide start screen & load game screen
+
+//Hide start screen & Game Start Screen loads
 $(".start-button").click(function(event) {
 	$('.tagline').hide();
 	$('.instructions').hide();
@@ -142,19 +138,15 @@ $(".start-button").click(function(event) {
 	$("#game").fadeIn('slow').css('display', 'flex');
 });
 
-// $(window).ready(function(){//when window is ready
-// 	var user = window.localStorage.getItem("user");
-// 	if (!user) {
-// 		console.log("no user");
-// 		user = "meg";
-// 		window.localStorage.setItem("user", user);
-// 	}
+//Play Again button
+$('.play-again').click(function(event) {
+	$('.end-screen').hide();
+	$('.instructions').show();
+	$("#category").show();
+	$(".category").removeClass('green-button');
+	$(".start-button").show();
+});
 
-// 	console.log(user);
-// }); 
-
-// var random = Math.floor(Math.random()*10);
-// $(".category").eq(random).click();
 
 
 var categories = [ //API does not supply categories numbers in JSON response
@@ -241,6 +233,16 @@ var categories = [ //API does not supply categories numbers in JSON response
 	}
 ];
 
+// $(window).ready(function(){//when window is ready
+// 	var user = window.localStorage.getItem("user");
+// 	if (!user) {
+// 		console.log("no user");
+// 		user = "meg";
+// 		window.localStorage.setItem("user", user);
+// 	}
+
+// 	console.log(user);
+// }); 
 
 
 

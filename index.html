@@ -22,8 +22,11 @@
 			
 			<div class="category-container">
 				<button class="category buttons">General Knowledge</button>
-				<button class="category buttons cat-768">Animals</button>
 				<button class="category buttons">Art</button>
+				<button class="category buttons">Geography</button>
+				<button class="category buttons">Science &amp; Nature</button>
+				<button class="category buttons">Sports</button>
+				<button class="category buttons cat-768">Animals</button>
 				<button class="category buttons cat-768">Board Games</button>
 				<button class="category buttons cat-768">Books</button>
 				<button class="category buttons cat-768">Cartoons</button>
@@ -31,12 +34,11 @@
 				<button class="category buttons cat-768">Comics</button>
 				<button class="category buttons cat-768">Computers</button>
 				<button class="category buttons cat-768">Film</button>
-				<button class="category buttons">Geography</button>
+				
 				<button class="category buttons cat-768">History</button>
 				<button class="category buttons cat-768">Music</button>
 				<button class="category buttons cat-768">Mythology</button>
-				<button class="category buttons">Science &amp; Nature</button>
-				<button class="category buttons">Sports</button>
+				
 				<button class="category buttons cat-768">Television</button>
 				<button class="category buttons cat-768">Politics</button>
 				<button class="category buttons cat-768">Vehicles</button>
@@ -53,21 +55,29 @@
 
 			<p class="question"><span>Question:</span><br /><span id="q"></span></p>
 
-			<button class="answer-buttons buttons" id="mc-1">Answer</button>
-			<button class="answer-buttons buttons" id="mc-2">Answer</button>
-			<button class="answer-buttons buttons" id="mc-3">Answer</button>
-			<button class="answer-buttons buttons" id="mc-4">Answer</button>
+			<div class="row">
+				<button class="answer-buttons buttons" id="mc-1">Answer</button>
+				<button class="answer-buttons buttons" id="mc-2">Answer</button>
+			</div>
 
-			<!-- hidden div to hold right answer in case of unicode -->
-<!-- 
-			<div class="feedback"><span id="correct"></span></div> -->
+			<div class="row">
+				<button class="answer-buttons buttons" id="mc-3">Answer</button>
+				<button class="answer-buttons buttons" id="mc-4">Answer</button>
+			</div>
+			
+			<progress id="score-bar" value="0" max="100"></progress>
 
-<!-- 			<button type="submit" id="next">Get Next</button> -->
-
-			<div id="score"></div>
-		</div>
+		</div> <!-- end #game div -->
 		
-		<div class="hide win-screen" id="winner">You win all the things!</div>
+		<div class="hide end-screen" id="game-end"> <!-- game over screen -->
+
+			<h3 id="game-end-msg">Way to go!</h3>
+			<p id="bar-msg">You filled the bar!</p>
+			<p class="hide">Final Score: <span id="percent-score">10</span>%</p>
+			<p class="rank">Your current rank: <span id="rank"> Trivia Master</span></p>
+			<button type="submit" class="buttons play-again">Play Again!</button>
+
+		</div>
 
 	</div>
 
