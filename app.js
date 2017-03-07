@@ -16,7 +16,7 @@ var incorrect = 0;
 $.getJSON(url, getQuestions);
 
 
-
+//Get questions
 function getQuestions(data) {
 	response = data; //store json data in this variable
 	console.log(response); //so i can see object
@@ -25,7 +25,7 @@ function getQuestions(data) {
 	}
 }
 
-
+//Build questions in DOM
 function buildQuestion(num) {
 	var item = response.results;
 
@@ -50,16 +50,14 @@ function nextQuestion() { //next button
 		counter = 0; //reset counter
 		$('#game').fadeOut('slow').css('display', 'none'); //hide question area
 		$('#game-end').toggleClass('hide');
+		endGameDisplay();
 	}
 
 	$('.answer-buttons').removeClass('green-button');
 	$('.answer-buttons').removeClass('red-button');
 
 
-}; //in final build, this should automatically advance without button
-
-//setTimeout(function(){...},2000)
-
+}; 
 
 
 //Answer button handler
@@ -69,7 +67,7 @@ $('.answer-buttons').click(function(event) {
 	var realAnswer = $('<p>' + correctAnswer + '</p>').text(); //gets the text inside the hidden div
 	
 	if ( $(this).text() == realAnswer ) { //compares text of button with text of realAnswer
-		$(this).addClass('green-button').stop().delay(1800).queue(function() { //light green and wait
+		$(this).addClass('green-button').stop().delay(2000).queue(function() { //light green and wait
 			nextQuestion(); //get next question
 		});
 		correct++;
@@ -82,9 +80,6 @@ $('.answer-buttons').click(function(event) {
 					nextQuestion(); //move to next question
 				});
 			});
-
-
-
 		incorrect++;
 	}
 
@@ -122,6 +117,7 @@ $('.category').on('click', function(event) {
 	counter = 0; //reset all counters and scores
 	correct = 0;
 	incorrect = 0;
+	$('#score-bar').attr('value', 0);
 	buildQuestion(counter);
 	$('.category').removeClass('green-button'); //remove class if they switch buttons
 	$(this).toggleClass('green-button'); //toggle green on selection
@@ -140,13 +136,42 @@ $(".start-button").click(function(event) {
 
 //Play Again button
 $('.play-again').click(function(event) {
-	$('.end-screen').hide();
+	$('.end-screen').toggleClass('hide');
 	$('.instructions').show();
 	$("#category").show();
 	$(".category").removeClass('green-button');
 	$(".start-button").show();
 });
 
+//Game over screen
+function endGameDisplay() {
+	if (correct >= 8 && correct < 10) {
+		$('#game-end-msg').text('So close!');
+		$('#bar-msg').text("You didn't fill the bar!");
+		$('#final-score').removeClass('hide');
+		$('#percent-score').text(correct * 10);
+		$('#rank').text(ranks[1]);
+	} else if (correct >= 4 && correct <= 7) {
+		$('#game-end-msg').text('Not quite!');
+		$('#bar-msg').text("You didn't fill the bar!");
+		$('#final-score').removeClass('hide');
+		$('#percent-score').text(correct * 10);
+		$('#rank').text(ranks[2]);
+	} else if (correct >= 0 && correct <= 3) {
+		$('#game-end-msg').text('Needs work!');
+		$('#bar-msg').text("You didn't fill the bar!");
+		$('#final-score').removeClass('hide');
+		$('#percent-score').text(correct * 10);
+		$('#rank').text(ranks[3]);
+	} else if (correct >= 10) {
+		$('#game-end-msg').text('Way to go!');
+		$('#bar-msg').text("You filled the bar!");
+		$('#rank').text(ranks[0]);
+	}
+
+}
+
+var ranks = ["Trivia Nerd", "Trivia Ninja", "Trivia Pirate", "Trivia Noob"];
 
 
 var categories = [ //API does not supply categories numbers in JSON response
@@ -230,6 +255,10 @@ var categories = [ //API does not supply categories numbers in JSON response
 	{
 		name: "Cartoons",
 		num: 32
+	},
+	{
+		name: "Video Games",
+		num: 15
 	}
 ];
 

@@ -3,8 +3,6 @@
 	//"Random" category button
 		//should default to picking a handful of random questions (base url)
 
-//Category buttons. What if they change their mind and pick a different category? take green class off.
-
 
 //Things to Add to LocalStorage
 	window.localStorage.setItem
@@ -19,3 +17,5 @@
 		 var ranks = ['ninja','general','queen'];
 
 		{user: 'niko', rank: 'ninja', id: '324', lastPlayed: 2/3/15} //player in localstorage
+
+/*Need animate bar when it adds value*/
