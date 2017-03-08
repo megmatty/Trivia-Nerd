@@ -1,21 +1,36 @@
-//Features
+//Features Descoped for MVP (add if time)
+	//1 - LocalStorage
+		//How to: window.localStorage.setItem
+			//on page load
+		//Session token (to prevent question repeats)
+			//if user has token, pull it
+			//if no token, set one
+		//Store highest title-rank
+				//e.g. {user: 'niko', highestRank: 'ninja'} 
+			
+	//2 - Gameplay
+		//If player hits 10q goal before end of questions array, end game early (win)
+		//Status bar for >768 with Category playing, questions left, current rank
+		//Make questions easier? Change url to pull 'easy' or 'medium' questions?
 
-	//"Random" category button
-		//should default to picking a handful of random questions (base url)
+	//3 - Goal bar
+		//More interesting design
+		//Animation on score increment
+		//Vertical bar in >1024 screens?
+		//Abandon html <progress> bar for div? Redo JS for bar fill if so.
+
+//Refinements
+
+	//1 - Design
+		//Better coordinate/more colors palette
+		//Better font than OpenSans?
+		//Better style and animate goal bar
+		//Vertical, left side presentation for goal bar >1024
+		//More category button colors? How to spread in a pattern?
+		//Style end game screen
 
 
-//Things to Add to LocalStorage
-	window.localStorage.setItem
-	//on page load
-
-	//Session token
-		if user has token, pull it
-		if no token, set one
-
-	//Title-rank i.e. object or array of rank values
-
-		 var ranks = ['ninja','general','queen'];
-
-		{user: 'niko', rank: 'ninja', id: '324', lastPlayed: 2/3/15} //player in localstorage
-
-/*Need animate bar when it adds value*/
+	//2 - Optimize
+		//Make graphics web-ready
+		//Refactor CSS
+		//Improve JS as needed

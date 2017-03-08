@@ -8,7 +8,7 @@ html {
 
 body {
 	font-size: 1em;
-	background: #074A7B url(img/quizbg-light.png) no-repeat center;
+	background: #074A7B url(img/quiz-bg.jpg) no-repeat center;
 	background-size: cover;
 	color: #fff;
 	font-family: 'Open Sans', sans-serif;
@@ -31,7 +31,7 @@ body {
 }
 
 #game {
-	padding: 20px 10px;
+	padding: 15px 10px;
 	flex-direction: column;
 	justify-content: center;
 		position: relative;
@@ -41,10 +41,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 30px;
 	border: 3px solid #F8BF1B;
 	border-radius: 10px;
-	margin: 20px 5px;
+	margin: 50px 5px 0;
 }
 
 .row {
@@ -80,7 +79,7 @@ body {
 
 .question {
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 .question span {
@@ -94,7 +93,7 @@ body {
 
 .rank {
 	text-align: center;
-	width: 80%;
+	width: 70%;
 	line-height: 2;
 }
 
@@ -153,12 +152,16 @@ body {
 
 .play-again {
 	background-color: #13AB66;
-	margin-top: 75px;
+	width: 50%;
+	margin: 25px 0;
 	color: #fff;
+	 -webkit-box-shadow: 2px 2px 3px #333;
+     -moz-box-shadow: 2px 2px 3px #333;
+     box-shadow: 2px 2px 3px #333;
 }
 
 
-/*Button States*/
+/*Answer Button States*/
 
 .green-button {
 	background-color: #13AB66;
@@ -257,16 +260,16 @@ progress::-webkit-progress-value {
 		width: 33.3%;
 	}
 
+	.play-again {
+		width: 33.3%;
+	}
+
 	.answer-buttons {
 		min-width: 50%;
 		max-width: 80%;
 		margin: 30px 10px;
 		height: 75px;
 		font-size: 1.2em;
-	}
-
-	.play-again {
-		padding: 20px;
 	}
 
 	.row {
