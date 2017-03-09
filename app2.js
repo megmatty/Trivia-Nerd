@@ -3,11 +3,8 @@
 var url = "https://opentdb.com/api.php?amount=12&type=multiple"; //gets mc questions
 
 var response; //holds response data
-var counter = -1; //counter for getting next question
 var uniqueRandoms = []; //empty array for random number function
 var numRandoms = 4; //varible for random number function
-var correct = 0; //number correct
-var incorrect = 0; //number incorrect
 var ranks = ["Trivia Nerd", "Trivia Ninja", "Trivia Pirate", "Trivia Noob"]; //array for ranks
 var categories = [ //API does not supply categories numbers in JSON response
 	{
@@ -109,15 +106,14 @@ function getQuestions(data) {
 	console.log(response); //so i can see object
 	if (data) { //checks to make sure data has arrived
 		// buildQuestion(0); //loads first question
-		nextQuestion();
+		buildQuestion(0, 0, 0);
 	}
 }
 
 //Build Questions in DOM
-function buildQuestion(num) {
+function buildQuestion(num, correct, incorrect) {
 	var item = response.results;
 
-	console.log(counter);
 	$('#q').html(item[num].question);
 		//html method makes the unicode characters render
 	$('#mc-' + (makeUniqueRandom() + 1)).html(item[num].incorrect_answers[0]);
@@ -128,50 +124,56 @@ function buildQuestion(num) {
 			//new function to take 1,2,3,4 and randomize
 				//math.random + loop to place answers in ids
 				//then assign 'mc-' + makeUniqueRandom + 1
-}		
+	activateButtons(num, item[num].correct_answer, correct, incorrect);
 
-//Get Next Question
-function nextQuestion() { //next button
-	if (counter <=10) {
-		counter = (counter + 1); //advance counter by 1
-		buildQuestion(counter);
-	} else if (counter >=11) {
-		counter = 0; //reset counter
-		$('#game').fadeOut('slow').css('display', 'none'); //hide question area
-		$('#game-end').toggleClass('hide');
-		endGameDisplay();
-	}
+}
 
-	$('.answer-buttons').removeClass('green-button');
-	$('.answer-buttons').removeClass('red-button');
+function activateButtons(num, correctAnswer, correct, incorrect) { //keeps other buttons from clicking after 1st time
+	$('.answer-buttons').bind('click', function(event) {
+		$('.answer-buttons').unbind('click');
+		checkAnswer(num, correctAnswer, this, correct, incorrect);
+	});
 
 
-}; 
+}
 
-//Answer Button Handler
-$('.answer-buttons').click(function(event) {
-	var correctAnswer = response.results[counter].correct_answer; //gets correct answer value from object
-
+function checkAnswer(num, correctAnswer, button, correct, incorrect) {
+	console.log(button);
 	var realAnswer = $('<p>' + correctAnswer + '</p>').text(); //converts unicode chars & gets text
-	
-	if ( $(this).text() == realAnswer ) { //compares text of button with text of realAnswer
-		$(this).addClass('green-button').stop().delay(2000).queue(function() { //light green and wait
-			nextQuestion(); //get next question
+	if ( $(button).text() == realAnswer ) { //compares text of button with text of realAnswer
+		$(button).addClass('green-button').stop().delay(2000).queue(function() { //light green and wait
+			correct++;
+			$('#score-bar').attr('value', (correct * 10) ); //advance progress bar 10% (10/100)
+			nextQuestion(num, correct, incorrect); //get next question
 		});
-		correct++; //increment correct answer
-		$('#score-bar').attr('value', (correct * 10) ); //advance progress bar 10% (10/100)
+		
 	} else {
-		$(this).addClass('red-button').stop().delay(1200).queue(function() { //mark red and wait
+		$(button).addClass('red-button').stop().delay(1200).queue(function() { //mark red and wait
 			$('.answer-buttons').filter(function() { //find the correct answer
 					return $(this).text() == realAnswer;
 				}).addClass('green-button').stop().delay(2000).queue(function() { //display correct answer in green
-					nextQuestion(); //move to next question
+					incorrect++;
+					nextQuestion(num, correct, incorrect); //move to next question
 				});
 			});
-		incorrect++; //increment incorrect answer
 	}
 
-});
+}
+
+function nextQuestion(num, correct, incorrect) {
+	$('.answer-buttons').removeClass('green-button');
+	$('.answer-buttons').removeClass('red-button');
+	if (num <=10) {
+		num = num + 1;
+		buildQuestion(num, correct, incorrect);
+	} else {
+		$('#game').fadeOut('slow').css('display', 'none');
+		$('#game-end').toggleClass('hide');
+		endGameDisplay();
+	}
+}
+
+
 
 //Category Button Handler
 $('.category').on('click', function(event) {

@@ -194,6 +194,7 @@ progress {
 	width: 80%;
 	margin: 10% auto;
 	border: none;
+/*	transition: all 1s;*/
 }
 
 progress::-webkit-progress-bar {
@@ -202,10 +203,15 @@ progress::-webkit-progress-bar {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 
-progress::-webkit-progress-value {
+progress[value]::-webkit-progress-value {
 	background-color: #CC444B;
 	border-radius: 2px;
+/*	-webkit-animation: animate-stripes 5s linear infinite; animation: animate-stripes 5s linear infinite;
+	background-position: 0;*/
 } /*need -moz styling*/
+/*
+@-webkit-keyframes animate-stripes { 
+	100% { background-position: -100px 0px; } } @keyframes animate-stripes { 100% { background-position: -100px 0px; } }*/
 
 
 

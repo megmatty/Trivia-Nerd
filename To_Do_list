@@ -17,7 +17,6 @@
 		//More interesting design
 		//Animation on score increment
 		//Vertical bar in >1024 screens?
-		//Abandon html <progress> bar for div? Redo JS for bar fill if so.
 
 //Refinements
 
@@ -35,6 +34,4 @@
 		//Refactor CSS
 		//Improve JS as needed
 
-//Prevent more than 1 click per answer/question
-//Double tap on iphone - disable?
-//prevent more than 1 score per button click
+//Comment ALL NEW JS
