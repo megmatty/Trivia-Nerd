@@ -8,13 +8,14 @@ html {
 
 body {
 	font-size: 1em;
-	background: #074A7B url(img/quiz-bg.jpg) no-repeat center;
-	background-size: cover;
 	color: #fff;
 	font-family: 'Open Sans', sans-serif;
 	line-height: 1.2;
 	margin: 0;
 	padding: 0;
+	background: #074A7B url(img/quiz-bg.jpg) no-repeat center;
+	background-size: cover;
+	background-attachment: fixed;
 }
 
 /*Containers*/
@@ -111,7 +112,7 @@ body {
 }
 
 /*Buttons*/
-
+	/*Rebuild .buttons class */
 .buttons {
 	padding: 15px;
 	font-size: 1em;

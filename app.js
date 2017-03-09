@@ -207,7 +207,7 @@ $('.play-again').click(function(event) {
 	$(".start-button").show();
 });
 
-//Display Game Over Screen
+//Display Game Over Screen Text
 function endGameDisplay() {
 	if (correct >= 8 && correct < 10) { //8-10 Correct
 		$('#game-end-msg').text('So close!');

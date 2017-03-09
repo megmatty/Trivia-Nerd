@@ -34,3 +34,7 @@
 		//Make graphics web-ready
 		//Refactor CSS
 		//Improve JS as needed
+
+//Prevent more than 1 click per answer/question
+//Double tap on iphone - disable?
+//prevent more than 1 score per button click
