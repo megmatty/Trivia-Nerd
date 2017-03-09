@@ -109,7 +109,7 @@ function getQuestions(data) {
 	console.log(response); //so i can see object
 	if (data) { //checks to make sure data has arrived
 		// buildQuestion(0); //loads first question
-		nextQuestion();
+		buildQuestion(0);
 	}
 }
 
