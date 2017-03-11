@@ -100,14 +100,14 @@ function getQuestions(data) {
 	response = data; //store json data in this variable
 	console.log(response); //so i can see object
 	if (data) { //checks to make sure data has arrived
-		// buildQuestion(0); //loads first question
 		buildQuestion(0, 0, 0);
-	}
+	} 
 }
 
 //Build Questions in DOM
 function buildQuestion(num, correct, incorrect) {
 	var item = response.results;
+
 	$('#q').html(item[num].question);
 		//html method makes the unicode characters render
 	$('#mc-' + (makeUniqueRandom() + 1)).html(item[num].incorrect_answers[0]);
@@ -119,16 +119,18 @@ function buildQuestion(num, correct, incorrect) {
 				//math.random + loop to place answers in ids
 				//then assign 'mc-' + makeUniqueRandom + 1
 	activateButtons(num, item[num].correct_answer, correct, incorrect);
-	// console.log(item[num].correct_answer);
+	console.log(item[num].correct_answer);
 }
 
 function activateButtons(num, correctAnswer, correct, incorrect) { //keeps other buttons from clicking after 1st time
 	$('.answer-buttons').bind('click', function(event) {
 		$('.answer-buttons').unbind('click');
 		checkAnswer(num, correctAnswer, this, correct, incorrect);
+		// console.log(correctAnswer);
 	});
-
 }
+
+
 
 function checkAnswer(num, correctAnswer, button, correct, incorrect) {
 	// console.log(button);
@@ -138,7 +140,6 @@ function checkAnswer(num, correctAnswer, button, correct, incorrect) {
 			correct++;
 			$('#score-bar').attr('value', (correct * 10) ); //advance progress bar 10% (10/100)
 			nextQuestion(num, correct, incorrect); //get next question
-					console.log(correct);
 		});
 		
 	} else {
@@ -151,14 +152,14 @@ function checkAnswer(num, correctAnswer, button, correct, incorrect) {
 				});
 			});
 	}
-		// console.log(realAnswer);
+		console.log(realAnswer);
 
 }
 
 function nextQuestion(num, correct, incorrect) {
 	$('.answer-buttons').removeClass('green-button');
 	$('.answer-buttons').removeClass('red-button');
-	if (num <=10) {
+	if (num <=10 && correct < 10) {
 		num = num + 1;
 		buildQuestion(num, correct, incorrect);
 	} else {
@@ -168,27 +169,26 @@ function nextQuestion(num, correct, incorrect) {
 	}
 }
 
-
-
 //Category Button Handler
 $('.category').on('click', function(event) {
 	var text = $(this).text(); //get text of button
+
 	for (var i = 0; i < categories.length; i++) { //search object for matching category
 		if (text === categories[i].name) {
 			url = url + "&category=" + categories[i].num; //return category number & attach to url
 		}
 	}
+	$.getJSON(url, getQuestions) ; //Do an AJAX call for that category
 	correct = 0;
 	incorrect = 0;
 	$('#score-bar').attr('value', 0); //reset score bar to 0
 	$('.category').removeClass('green-button'); //remove class if they switch categories
 	$(this).toggleClass('green-button'); //toggle green on selection
-	$.getJSON(url, getQuestions); //Do an AJAX call for that category
 });
 
 //Start Button Handler
 $(".start-button").click(function(event) { //on clicking start button
-	$('.tagline').hide(); //hide everything on start screen
+	$('.tagline').addClass('hide'); //hide everything on start screen
 	$('.instr-container').hide();
 	$("#category").hide();
 	$(this).hide();
@@ -258,18 +258,28 @@ function makeUniqueRandom() {
 }
 
 //Local Storage
-// $(window).ready(function(){//when window is ready
-// 	var user = window.localStorage.getItem("user");
-// 	if (!user) {
-// 		console.log("no user");
-// 		user = "meg";
-// 		window.localStorage.setItem("user", user);
-// 	}
 
-// 	console.log(user);
+// 	var token = window.localStorage.getItem("token");
+// 	window.localStorage.setItem("token", token);
 // }); 
 
-
+//Session Token
+// $(window).ready(function(){//when window is ready
+var responseT;
+$.getJSON('https://opentdb.com/api_token.php?command=request', saveToken);
+function saveToken(data) {
+	responseT = data;
+	var token = responseT.token;
+	var savedToken = sessionStorage.getItem('userToken');
+	// console.log(token);
+	if (data) {
+			url = url + "&token=" + savedToken; //return saved token & attach to url
+		} else if (token == null || responseT.response_code == 4) {
+			$.getJSON('https://opentdb.com/api_token.php?command=request', saveToken);
+			window.sessionStorage.setItem('userToken', token);
+		}
+	console.log(savedToken);
+}
 
 
 

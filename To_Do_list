@@ -9,14 +9,13 @@
 				//e.g. {user: 'niko', highestRank: 'ninja'} 
 			
 	//2 - Gameplay
-		//If player hits 10q goal before end of questions array, end game early (win)
+	//DONE	//If player hits 10q goal before end of questions array, end game early (win)
 		//Status bar for >768 with Category playing, questions left, current rank
-		//Make questions easier? Change url to pull 'easy' or 'medium' questions?
 
 	//3 - Goal bar
 		//More interesting design
 		//Animation on score increment
-		//Vertical bar in >1024 screens?
+		//Vertical bar in >1024 screens? nah
 
 //Refinements
 
@@ -35,3 +34,6 @@
 		//Improve JS as needed
 
 //Comment ALL NEW JS
+
+//BUG: Switch categories, on click compares answer against first getjson even tho
+	//global variable is right. Logs 2 items for "realAnswer"
