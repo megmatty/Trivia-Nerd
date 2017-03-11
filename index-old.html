@@ -3,22 +3,20 @@
 <head>
 	<title>TriviaNerd</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
 
 	<div class="container">	
-		<img src="img/tnlogo.png" alt="Trivia Nerd title graphic" class="logo">
+		<img src="img/TriviaNerd.png" alt="Trivia Nerd title graphic" class="logo">
 
 		<h3 class="tagline hide">A trivia game for nerds, but also everyone else.</h3>
 
-		<div class="instr-container">
-			<p class="instructions">Choose a category and try to answer 12 trivia questions. Your goal is to fill the score bar by answering at least 10 of those questions correctly.</p>
-		</div>
+		<p class="instructions">Choose a category and try to answer 12 trivia questions. Your goal is to fill the score bar by answering at least 10 of those questions correctly.</p>
 
 		<div id="category">
 			<p class="instructions">Select a category: </p>
@@ -29,7 +27,7 @@
 				<button class="category buttons">Geography</button>
 				<button class="category buttons">Science &amp; Nature</button>
 				<button class="category buttons">Sports</button>
-				<button class="category buttons">Animals</button>
+				<button class="category buttons cat-768">Animals</button>
 				<button class="category buttons cat-768">Board Games</button>
 				<button class="category buttons cat-768">Books</button>
 				<button class="category buttons cat-768">Cartoons</button>
@@ -37,13 +35,16 @@
 				<button class="category buttons cat-768">Comics</button>
 				<button class="category buttons cat-768">Computers</button>
 				<button class="category buttons cat-768">Film</button>
+				
 				<button class="category buttons cat-768">History</button>
 				<button class="category buttons cat-768">Music</button>
 				<button class="category buttons cat-768">Mythology</button>
+				
 				<button class="category buttons cat-768">Television</button>
 				<button class="category buttons cat-768">Politics</button>
 				<button class="category buttons cat-768">Vehicles</button>
 				<button class="category buttons cat-768">Video Games</button>
+				
 				<button class="category buttons cat-768">Random</button>
 			</div>
 
@@ -66,6 +67,7 @@
 			</div>
 			
 			<progress id="score-bar" value="0" max="100"></progress>
+			<p class="goal">Goal</p>
 
 		</div> <!-- end #game div -->
 		
@@ -73,9 +75,6 @@
 
 			<h3 id="game-end-msg">Way to go!</h3>
 			<p id="bar-msg">You filled the bar!</p>
-			<img class="sadface hide" src="img/sadface.png" alt="Sad Face">
-			<img class="goldmedal hide" src="img/trophy.png" alt="gold trophy">
-
 			<p id="final-score" class="hide">Final Score: <span id="percent-score">10</span>%</p>
 			<p class="rank">Your current rank: <span id="rank"> Trivia Master</span></p>
 			<button type="submit" class="buttons play-again">Play Again!</button>
@@ -85,6 +84,6 @@
 	</div>
 
  	<script src="https://code.jquery.com/jquery-3.1.0.js"></script> 
- 	<script type="text/javascript" src="app.js" ></script>
+ 	<script type="text/javascript" src="app2.js" ></script>
 </body>
 </html>
