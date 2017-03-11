@@ -257,11 +257,6 @@ function makeUniqueRandom() {
     return val;
 }
 
-//Local Storage
-
-// 	var token = window.localStorage.getItem("token");
-// 	window.localStorage.setItem("token", token);
-// }); 
 
 //Session Token
 // $(window).ready(function(){//when window is ready
@@ -278,7 +273,7 @@ function saveToken(data) {
 			$.getJSON('https://opentdb.com/api_token.php?command=request', saveToken);
 			window.sessionStorage.setItem('userToken', token);
 		}
-	console.log(savedToken);
+	// console.log(savedToken);
 }
 
 
