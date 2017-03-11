@@ -118,11 +118,12 @@ body {
 }
 
 .category {
-	width: 45%;
+	width: 47%;
 	margin: 5px 10px 5px 0;
 	background: none;
-	height: 64px;
+	height: 55px;
 	font-size: .9em;
+	padding: 0;
 }
 
 .category:nth-child(2n) {
@@ -185,15 +186,28 @@ body {
 	width: 100px;
 }
 
+.star {
+	width: 45px;
+	position: absolute;
+	top: 7.5px;
+	right: -10px;
+}
+
+.prog-container {
+	margin: 0 auto;
+	width: 80%;
+	position: relative;
+}
+
+
 progress {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 	height: 40px;
-	width: 80%;
+	width: 100%;
 	margin: 5% auto;
 	border: none;
-	position: relative;
 }
 
 progress::-webkit-progress-bar {
@@ -302,6 +316,13 @@ progress[value]::-webkit-progress-value {
 		margin: 20px 0;
 	}
 
+	.star {
+		width: 75px;
+		position: absolute;
+		top: 20px;
+		right: -20px;
+	}
+
 	#game-end-msg {
 		font-size: 2em;
 	}
@@ -378,7 +399,12 @@ progress[value]::-webkit-progress-value {
 		padding: 15px;
 	}
 
-
+	.star {
+		width: 80px;
+		position: absolute;
+		top: 25px;
+		right: -15px;
+	}
 
 }
 
