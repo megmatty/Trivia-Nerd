@@ -100,6 +100,7 @@ function getQuestions(data) {
 //store json data in this variable
 	response = data;
 	if (data) { //checks to make sure data has arrived 
+				console.log(data);
 		buildQuestion(0, 0, 0, data);
 	} 
 	console.log(response); //so i can see object
@@ -131,6 +132,49 @@ function activateButtons(num, correctAnswer, correct, incorrect) { //keeps other
 	});
 }
 
+// function animateBar(correct) {
+// 	var v = 0;
+// 	var animate = setInterval(function() {
+// 		$('#score-bar').attr('value', v++);
+// 		console.log(v);
+// 	}, 100);
+// 	if (v >= (correct * 10)) {
+// 		clearInterval(animate);
+// 	}
+// 	animate();
+// }
+function animateBar(correct) {
+	var progressbar = $('#score-bar'),
+    max = (correct * 10);
+    time = 100;  
+      value = progressbar.val();
+ 
+  var loading = function() {
+      value += 0.2;
+      addValue = progressbar.val(value);
+       
+      // $('.progress-value').html(value + '%');
+ 
+      if (value > max) {
+          clearInterval(animate);                
+      }
+  };
+ 
+  var animate = setInterval(function() {
+      loading();
+  }, time);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 function checkAnswer(num, correctAnswer, button, correct, incorrect) {
@@ -139,7 +183,8 @@ function checkAnswer(num, correctAnswer, button, correct, incorrect) {
 	if ( $(button).text() == realAnswer ) { //compares text of button with text of realAnswer
 		$(button).addClass('green-button').stop().delay(2000).queue(function() { //light green and wait
 			correct++;
-			$('#score-bar').attr('value', (correct * 10) ); //advance progress bar 10% (10/100)
+			// $('#score-bar').attr('value', (correct * 10) ); //advance progress bar 10% (10/100)
+			animateBar(correct);
 			nextQuestion(num, correct, incorrect); //get next question
 		});
 		
@@ -262,7 +307,7 @@ function makeUniqueRandom() {
 //Session Token
 $(window).ready(function(){//when window is ready
 	var savedToken = localStorage.getItem('userToken');
-	// console.log(savedToken);
+	console.log(savedToken);
 	if (savedToken) {
 		url = url + "&token=" + savedToken;
 	} else {
@@ -277,7 +322,10 @@ $(window).ready(function(){//when window is ready
 	}
 });
 
-
+//set date of last played on start screen
+//mess with animate of bar
+//right wrong sounds
+//total correct score always, animate coins and sound or rolls number
 
 
 
