@@ -101,11 +101,7 @@ function getQuestions(data) {
 	console.log(response); //so i can see object
 	if (data) { //checks to make sure data has arrived
 		// buildQuestion(0); //loads first question
-<<<<<<< HEAD
-		buildQuestion(0);
-=======
 		buildQuestion(0, 0, 0);
->>>>>>> master
 	}
 }
 
