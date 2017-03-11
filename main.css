@@ -352,7 +352,7 @@ progress[value]::-webkit-progress-value {
 	}
 
 	.container {
-		margin: 0 100px;
+		margin: 0 auto;
 		max-width: 960px;
 	}
 
