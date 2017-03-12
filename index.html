@@ -14,7 +14,7 @@
 	<div class="container">	
 		<img src="img/tnlogo.png" alt="Trivia Nerd title graphic" class="logo">
 
-		<h3 class="tagline hide">A trivia game for nerds, but also everyone else.</h3>
+		<h3 class="last-display hide">Last played: <span id="last-play"></span></h3>
 
 		<div class="instr-container">
 			<p class="instructions">Choose a category and try to answer 12 trivia questions. Your goal is to fill the score bar by answering at least 10 of those questions correctly.</p>
@@ -86,6 +86,10 @@
 		</div>
 
 	</div>
+	<audio id="wrong-sfx" class="hide"><source src="sounds/wrong.wav" type="audio/wav"></audio>
+	<audio id="right-sfx" class="hide"><source src="sounds/right.wav" type="audio/wav"></audio>
+	<audio id="success-sfx" class="hide"><source src="sounds/success.wav" type="audio/wav"></audio>
+	<audio id="fail-sfx" class="hide"><source src="sounds/game_over.mp3" type="audio/mp3"></audio>
 
  	<script src="https://code.jquery.com/jquery-3.1.0.js"></script> 
  	<script type="text/javascript" src="app.js" ></script>

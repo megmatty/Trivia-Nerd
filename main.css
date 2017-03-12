@@ -356,13 +356,12 @@ progress[value]::-webkit-progress-value {
 		max-width: 50%;
 	}
 
-	.tagline {
+	.last-display {
 		text-align: center;
 		font-style: italic;
-		font-size: 1em;
 		padding: 5px 15px;
 		display: block;
-		font-size: 1.3em;
+		font-size: 1em;
 		margin: 0;
 	}
 

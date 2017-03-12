@@ -100,7 +100,7 @@ function getQuestions(data) {
 //store json data in this variable
 	response = data;
 	if (data) { //checks to make sure data has arrived 
-				console.log(data);
+		// console.log(data);
 		buildQuestion(0, 0, 0, data);
 	} 
 	console.log(response); //so i can see object
@@ -109,7 +109,7 @@ function getQuestions(data) {
 //Build Questions in DOM
 function buildQuestion(num, correct, incorrect, item) {
 	var item = item.results;
-	console.log(item, num);
+	// console.log(item, num);
 	$('#q').html(item[num].question);
 		//html method makes the unicode characters render
 	$('#mc-' + (makeUniqueRandom() + 1)).html(item[num].incorrect_answers[0]);
@@ -132,28 +132,17 @@ function activateButtons(num, correctAnswer, correct, incorrect) { //keeps other
 	});
 }
 
-// function animateBar(correct) {
-// 	var v = 0;
-// 	var animate = setInterval(function() {
-// 		$('#score-bar').attr('value', v++);
-// 		console.log(v);
-// 	}, 100);
-// 	if (v >= (correct * 10)) {
-// 		clearInterval(animate);
-// 	}
-// 	animate();
-// }
+
+//Animate progress bar
 function animateBar(correct) {
-	var progressbar = $('#score-bar'),
+	var progressbar = $('#score-bar'); 
     max = (correct * 10);
-    time = 100;  
-      value = progressbar.val();
+    time = 20;  //speed
+    value = progressbar.val();
  
   var loading = function() {
-      value += 0.2;
+      value += 0.5; //increment of bar advancement
       addValue = progressbar.val(value);
-       
-      // $('.progress-value').html(value + '%');
  
       if (value > max) {
           clearInterval(animate);                
@@ -166,29 +155,20 @@ function animateBar(correct) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+//Check answer for correct/incorrect and score
 function checkAnswer(num, correctAnswer, button, correct, incorrect) {
 	// console.log(button);
 	var realAnswer = $('<p>' + correctAnswer+ '</p>').text(); //converts unicode chars & gets text
 	if ( $(button).text() == realAnswer ) { //compares text of button with text of realAnswer
+		correct++; //score correct
+		$('#right-sfx')[0].play(); //play right sfx
+		animateBar(correct); //advance progress bar
 		$(button).addClass('green-button').stop().delay(2000).queue(function() { //light green and wait
-			correct++;
-			// $('#score-bar').attr('value', (correct * 10) ); //advance progress bar 10% (10/100)
-			animateBar(correct);
 			nextQuestion(num, correct, incorrect); //get next question
 		});
 		
 	} else {
+		$('#wrong-sfx')[0].play(); //play wrong sfx
 		$(button).addClass('red-button').stop().delay(1200).queue(function() { //mark red and wait
 			$('.answer-buttons').filter(function() { //find the correct answer
 					return $(this).text() == realAnswer;
@@ -198,10 +178,11 @@ function checkAnswer(num, correctAnswer, button, correct, incorrect) {
 				});
 			});
 	}
-		console.log(realAnswer);
+		// console.log(realAnswer);
 
 }
 
+//Advance Next Question
 function nextQuestion(num, correct, incorrect) {
 	$('.answer-buttons').removeClass('green-button');
 	$('.answer-buttons').removeClass('red-button');
@@ -218,10 +199,11 @@ function nextQuestion(num, correct, incorrect) {
 //Category Button Handler
 $('.category').on('click', function(event) {
 	var text = $(this).text(); //get text of button
-
 	for (var i = 0; i < categories.length; i++) { //search object for matching category
 		if (text === categories[i].name) {
 			url = url + "&category=" + categories[i].num; //return category number & attach to url
+		} else if (text === "Random") { //if random category button
+			url = 'https://opentdb.com/api.php?amount=12&type=multiple'; //use base url
 		}
 	}
 	correct = 0;
@@ -234,7 +216,7 @@ $('.category').on('click', function(event) {
 //Start Button Handler
 $(".start-button").click(function(event) { //on clicking start button
 	$.getJSON(url, getQuestions) ; //Do an AJAX call for that category
-	$('.tagline').addClass('hide'); //hide everything on start screen
+	$('.last-display').addClass('hide'); //hide everything on start screen
 	$('.instr-container').hide();
 	$("#category").hide();
 	$(this).hide();
@@ -247,10 +229,11 @@ $('.play-again').click(function(event) {
 	$('.sadface').addClass('hide');
 	$('.goldmedal').addClass('hide');
 	$('.instr-container').show(); //show start screen items
-	$('.tagline').toggleClass('hide');
+	$('.last-display').toggleClass('hide');
 	$("#category").show();
 	$(".category").removeClass('green-button'); //reset category button states
 	$(".start-button").show();
+	$('#last-play').text(window.localStorage.getItem('lastDate'));
 });
 
 //Display Game Over Screen Text
@@ -262,6 +245,7 @@ function endGameDisplay(correct) {
 		$('#final-score').removeClass('hide');
 		$('#percent-score').text(correct * 10);
 		$('#rank').text(ranks[1]); //pull appropriate rank item & display
+		$('#fail-sfx')[0].play(); //play fail sfx
 	} else if (correct >= 4 && correct <= 6) { //4-6 Correct
 		$('#game-end-msg').text('Not quite!');
 		$('#bar-msg').text("You didn't fill the bar!");
@@ -269,6 +253,7 @@ function endGameDisplay(correct) {
 		$('#final-score').removeClass('hide');
 		$('#percent-score').text(correct * 10);
 		$('#rank').text(ranks[2]);
+		$('#fail-sfx')[0].play(); //play fail sfx
 	} else if (correct >= 0 && correct <= 3) { //0-3 Correct
 		$('#game-end-msg').text('Needs work!');
 		$('#bar-msg').text("You didn't fill the bar!");
@@ -276,11 +261,14 @@ function endGameDisplay(correct) {
 		$('#final-score').removeClass('hide');
 		$('#percent-score').text(correct * 10);
 		$('#rank').text(ranks[3]);
+		$('#fail-sfx')[0].play(); //play fail sfx
 	} else if (correct >= 10) { //10+ correct
 		$('#game-end-msg').text('Way to go!');
 		$('.goldmedal').removeClass('hide');
+		$('#final-score').addClass('hide');
 		$('#bar-msg').text("You filled the bar!");
 		$('#rank').text(ranks[0]);
+		$('#success-sfx')[0].play(); //play success sfx
 	}
 
 }
@@ -304,26 +292,40 @@ function makeUniqueRandom() {
 }
 
 
-//Session Token
+// Session Token
+// $(window).ready(function(){//when window is ready
+// 	var savedToken = localStorage.getItem('userToken');
+// 	console.log(savedToken);
+// 	if (savedToken) {
+// 		url = url + "&token=" + savedToken;
+// 	} else {
+// 		$.getJSON('https://opentdb.com/api_token.php?command=request', function(r) {
+// 			console.log(r.token);
+// 			if (r.response_code == 4) {
+// 				$.getJSON('https://opentdb.com/api_token.php?command=reset&token=' + savedToken);
+// 				// $.getJSON('https://opentdb.com/api_token.php?command=request');
+// 				window.localStorage.setItem('userToken', null);
+// 				location.reload();
+// 			}
+// 			window.localStorage.setItem('userToken', r.token);
+// 		});
+// 	}
+// });
+
+
+
+//Save Date & display last played
 $(window).ready(function(){//when window is ready
-	var savedToken = localStorage.getItem('userToken');
-	console.log(savedToken);
-	if (savedToken) {
-		url = url + "&token=" + savedToken;
-	} else {
-		$.getJSON('https://opentdb.com/api_token.php?command=request', function(r) {
-			// console.log(r.token);
-			if (r.response_code == 4) {
-				window.localStorage.setItem('userToken', null);
-				location.reload();
-			}
-			window.localStorage.setItem('userToken', r.token);
-		});
-	}
+	var date = new Date(); //get todays date
+	var prevDate = window.localStorage.getItem('lastDate'); 
+	window.localStorage.setItem('lastDate', date);
+	$('#last-play').text(prevDate);
+	// window.localStorage.setItem('lastDate', date.toISOString().substring(0, 10)); //format 2017-03-12
+	console.log(localStorage.lastDate);
+	console.log(prevDate);
 });
 
 //set date of last played on start screen
-//mess with animate of bar
 //right wrong sounds
 //total correct score always, animate coins and sound or rolls number
 

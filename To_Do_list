@@ -1,7 +1,5 @@
 //Features Descoped for MVP (add if time)
 	//1 - LocalStorage
-		//How to: window.localStorage.setItem
-			//on page load
 		//Session token (to prevent question repeats)
 			//if user has token, pull it
 			//if no token, set one
@@ -9,24 +7,10 @@
 				//e.g. {user: 'niko', highestRank: 'ninja'} 
 			
 	//2 - Gameplay
-	//DONE	//If player hits 10q goal before end of questions array, end game early (win)
 		//Status bar for >768 with Category playing, questions left, current rank
 
-	//3 - Goal bar
-		//More interesting design
-		//Animation on score increment
-		//Vertical bar in >1024 screens? nah
 
 //Refinements
-
-	//1 - Design
-		//Better coordinate/more colors palette
-		//Better font than OpenSans?
-		//Better style and animate goal bar
-		//Vertical, left side presentation for goal bar >1024
-		//More category button colors? How to spread in a pattern?
-		//Style end game screen
-
 
 	//2 - Optimize
 		//Make graphics web-ready
@@ -35,5 +19,3 @@
 
 //Comment ALL NEW JS
 
-//BUG: Switch categories, on click compares answer against first getjson even tho
-	//global variable is right. Logs 2 items for "realAnswer"
