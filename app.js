@@ -216,8 +216,12 @@ $('.category').on('click', function(event) {
 //Start Button Handler
 $(".start-button").click(function(event) { //on clicking start button
 	$.getJSON(url, getQuestions) ; //Do an AJAX call for that category
-	$('.last-display').addClass('hide'); //hide everything on start screen
-	$('.instr-container').hide();
+		if ($(window).width()> 1000){ //show date display only >1000px
+			$('.last-display').removeClass('hide');
+	    } else {
+	    	$('.last-display').addClass('hide');
+	    }
+	$('.instr-container').hide(); //hide everything on start screen
 	$("#category").hide();
 	$(this).hide();
 	$("#game").fadeIn('slow').css('display', 'flex'); //show game screen
@@ -229,7 +233,11 @@ $('.play-again').click(function(event) {
 	$('.sadface').addClass('hide');
 	$('.goldmedal').addClass('hide');
 	$('.instr-container').show(); //show start screen items
-	$('.last-display').toggleClass('hide');
+		if ($(window).width()> 1000){ //show date display only >1000px
+			$('.last-display').removeClass('hide');
+	    } else {
+	    	$('.last-display').addClass('hide');
+	    }
 	$("#category").show();
 	$(".category").removeClass('green-button'); //reset category button states
 	$(".start-button").show();
@@ -318,9 +326,9 @@ function makeUniqueRandom() {
 $(window).ready(function(){//when window is ready
 	var date = new Date(); //get todays date
 	var prevDate = window.localStorage.getItem('lastDate'); 
-	window.localStorage.setItem('lastDate', date);
+	// window.localStorage.setItem('lastDate', date); //full date and time
 	$('#last-play').text(prevDate);
-	// window.localStorage.setItem('lastDate', date.toISOString().substring(0, 10)); //format 2017-03-12
+	window.localStorage.setItem('lastDate', date.toISOString().substring(0, 10)); //format 2017-03-12
 	console.log(localStorage.lastDate);
 	console.log(prevDate);
 });
