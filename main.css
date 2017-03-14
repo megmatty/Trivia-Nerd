@@ -143,7 +143,6 @@ body {
 	width: 100%;
 	margin: 7.5px 0;
 	background: none;
-	transition: all 0.5s;
 }
 
 .play-again {
@@ -381,9 +380,9 @@ progress[value]::-webkit-progress-value {
 		margin-right: 5px;
 	}
 
-	.buttons {
+/*	.buttons {
 		transition: border .5s;
-	}
+	}*/
 
 	.buttons:hover {
 		border: 3px solid #8a4fd1;

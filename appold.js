@@ -99,7 +99,8 @@ var categories = [ //API does not supply categories numbers in JSON response
 function getQuestions(data) {
 //store json data in this variable
 	response = data;
-	if (data ) { //checks to make sure data has arrived & is good to go
+	if (data) { //checks to make sure data has arrived 
+		console.log(data);
 		buildQuestion(0, 0, 0, data);
 	} 
 	console.log(response); //so i can see object
@@ -214,11 +215,7 @@ $('.category').on('click', function(event) {
 
 //Start Button Handler
 $(".start-button").click(function(event) { //on clicking start button
-	// $.getJSON(url, getQuestions) ; //Do an AJAX call for that category
-	var savedToken = window.localStorage.getItem('userToken');
-	console.log("saved:" + savedToken);
-	checkToken(savedToken); //token check to see if its valid
-
+	$.getJSON(url, getQuestions) ; //Do an AJAX call for that category
 		if ($(window).width()> 1000){ //show date display only >1000px
 			$('.last-display').removeClass('hide');
 	    } else {
@@ -303,44 +300,41 @@ function makeUniqueRandom() {
 }
 
 
-//Store & Check Session Token
-function checkToken(savedToken) {
-	$(window).ready(function(){
-		var tokenURL = url + "&token=" + savedToken;
-		$.getJSON(tokenURL, function(data) {
-			if (data.response_code === 3) { //if API responds 'you don't have a token'
-				$.getJSON('https://opentdb.com/api_token.php?command=request', function(r) { //get token
-					var newToken = r.token;
-					// console.log(newToken);
-					window.localStorage.setItem('userToken', newToken); //set token
-					url += "&token=" + newToken;
-				});
-				$.getJSON(url, getQuestions); //run get Questions w/new token
-			} 
-			else if (data.response_code === 4) { //if API response 'all questions used up'
-				console.log('response code: ' + data.response_code);
-				var tokenReset = 'https://opentdb.com/api_token.php?command=reset&token=' + savedToken;
-				$.getJSON(tokenReset);  //reset token
-				$.getJSON(url, getQuestions); //get questions
-			}	
-			else {
-				$.getJSON(url, getQuestions); //just get questions.
-			}
-		});
-	});
-}
+// Session Token
+// $(window).ready(function(){//when window is ready
+// 	var savedToken = localStorage.getItem('userToken');
+// 	console.log(savedToken);
+// 	if (savedToken) {
+// 		url = url + "&token=" + savedToken;
+// 	} else {
+// 		$.getJSON('https://opentdb.com/api_token.php?command=request', function(r) {
+// 			console.log(r.token);
+// 			if (r.response_code == 4) {
+// 				$.getJSON('https://opentdb.com/api_token.php?command=reset&token=' + savedToken);
+// 				// $.getJSON('https://opentdb.com/api_token.php?command=request');
+// 				window.localStorage.setItem('userToken', null);
+// 				location.reload();
+// 			}
+// 			window.localStorage.setItem('userToken', r.token);
+// 		});
+// 	}
+// });
+
 
 
 //Save Date & display last played
 $(window).ready(function(){//when window is ready
-	var date = new Date().toLocaleString(); //get todays date
+	var date = new Date(); //get todays date
 	var prevDate = window.localStorage.getItem('lastDate'); 
-	window.localStorage.setItem('playDate', date); //remember date and time
+	// window.localStorage.setItem('lastDate', date); //full date and time
 	$('#last-play').text(prevDate);
-	console.log(localStorage.playDate);
+	window.localStorage.setItem('lastDate', date.toISOString().substring(0, 10)); //format 2017-03-12
+	console.log(localStorage.lastDate);
 	console.log(prevDate);
 });
 
+//set date of last played on start screen
+//right wrong sounds
 //total correct score always, animate coins and sound or rolls number
 
 
