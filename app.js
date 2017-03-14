@@ -99,7 +99,7 @@ var categories = [ //API does not supply categories numbers in JSON response
 function getQuestions(data) {
 //store json data in this variable
 	response = data;
-	if (data ) { //checks to make sure data has arrived & is good to go
+	if (data ) { //checks to make sure data has arrived
 		buildQuestion(0, 0, 0, data);
 	} 
 	console.log(response); //so i can see object
@@ -200,6 +200,7 @@ $('.category').on('click', function(event) {
 	var text = $(this).text(); //get text of button
 	for (var i = 0; i < categories.length; i++) { //search object for matching category
 		if (text === categories[i].name) {
+			url = 'https://opentdb.com/api.php?amount=12&type=multiple';
 			url = url + "&category=" + categories[i].num; //return category number & attach to url
 		} else if (text === "Random") { //if random category button
 			url = 'https://opentdb.com/api.php?amount=12&type=multiple'; //use base url
