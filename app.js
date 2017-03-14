@@ -334,7 +334,7 @@ function checkToken(savedToken) {
 //Save Date & display last played
 $(window).ready(function(){//when window is ready
 	var date = new Date().toLocaleString(); //get todays date
-	var prevDate = window.localStorage.getItem('lastDate'); 
+	var prevDate = window.localStorage.getItem('playDate'); 
 	window.localStorage.setItem('playDate', date); //remember date and time
 	$('#last-play').text(prevDate);
 	console.log(localStorage.playDate);
