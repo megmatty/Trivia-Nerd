@@ -2,7 +2,7 @@
 ###A trivia quiz app using the Open Trivia Database
 
 ## Screenshots
-![TriviaNerd Start Screen](http://i.imgur.com/OB9DcNl.png)![TriviaNerd Game Screen](http://i.imgur.com/HpQceRG.png)
+![TriviaNerd Start Screen](http://i.imgur.com/OB9DcNl.png?1)![TriviaNerd Game Screen](http://i.imgur.com/HpQceRG.png?1)
 
 ## Description
 TriviaNerd is a multiple-choice trivia game where the object is to fill the score
