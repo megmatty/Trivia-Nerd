@@ -135,7 +135,6 @@ body {
 	margin: 10px auto 0;
 	background-color: #5bc2c0;
 	display: block;
-	color: #fff;	
 	height: 64px;
 }
 
@@ -149,7 +148,6 @@ body {
 	background-color: #5bc2c0;
 	width: 50%;
 	margin: 15px 0;
-	color: #fff;
 }
 
 
@@ -167,7 +165,7 @@ body {
 	transition: all 0.8s;
 }
 
-/*Special*/
+/*Special & Images*/
 
 .hide {
 	display: none;
@@ -379,10 +377,6 @@ progress[value]::-webkit-progress-value {
 		width: 48%;
 		margin-right: 5px;
 	}
-
-/*	.buttons {
-		transition: border .5s;
-	}*/
 
 	.buttons:hover {
 		border: 3px solid #8a4fd1;
