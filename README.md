@@ -13,7 +13,7 @@ TriviaNerd is a fun multiple-choice trivia game where the object is to fill the 
 
 ## Technical
 * HTML5
-  * Makes use of HTML5 elements such as <progress> and <audio>
+  * Makes use of HTML5 elements such as progress and audio
 * CSS3
 * Javascript (jQuery)
   * Utilizes localStorage to store sesssion tokens and resets the token if all 
