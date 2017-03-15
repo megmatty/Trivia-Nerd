@@ -1,11 +1,11 @@
 # TriviaNerd
-###A trivia quiz app using the Open Trivia Database
+### A trivia quiz app using the Open Trivia Database
 
 ## Screenshots
 ![TriviaNerd Start Screen](http://i.imgur.com/OB9DcNl.png?1)![TriviaNerd Game Screen](http://i.imgur.com/HpQceRG.png?1)
 
 ## Description
-TriviaNerd is a multiple-choice trivia game where the object is to fill the score
+TriviaNerd is a fun multiple-choice trivia game where the object is to fill the score
   bar and reach the goal by correctly answering 10 of 12 questions. Players can
   select their category or answer random questions across categories. At the end
   of the game, players receive their score along with their assigned rank. Try
