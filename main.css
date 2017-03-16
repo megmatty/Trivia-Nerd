@@ -40,9 +40,10 @@ body {
 
 #game {
 	padding: 10px;
-	flex-direction: column;
-	justify-content: flex-start;
-	height: 80vh;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
 .end-screen {
@@ -51,13 +52,8 @@ body {
 	align-items: center;
 	border: 3px solid #fff;
 	border-radius: 10px;
-	margin: 30px 5px 0;
+	margin: 15px 5px 0;
 	padding: 0 15px;
-}
-
-.row {
-	width: 100%;
-	text-align: center;
 }
 
 /*Text*/
@@ -85,6 +81,7 @@ body {
 	background-color: rgba(251, 249, 249, 0.3);
 	border-radius: 10px;
 	padding: 5px 10px;
+	flex-basis: 100%;
 }
 
 .question span {
@@ -108,7 +105,7 @@ body {
 
 
 /*Buttons*/
-	/*Rebuild .buttons class */
+
 .buttons {
 	padding: 15px;
 	cursor: pointer;
@@ -186,13 +183,13 @@ body {
 .star {
 	width: 45px;
 	position: absolute;
-	top: 7.5px;
+	top: 9.5px;
 	right: -17px;
 }
 
 .prog-container {
-	margin: 0 auto;
-	width: 80%;
+	margin: 0 0 0 -10px;
+	width: 90%;
 	position: relative;
 }
 
@@ -286,6 +283,7 @@ progress[value]::-webkit-progress-value {
 		margin: 10px 30px 30px;
 		padding: 20px 40px;
 		font-size: 1.3em;
+		flex-basis: 80%;
 	}
 
 	.answer-buttons {
@@ -297,6 +295,11 @@ progress[value]::-webkit-progress-value {
 	progress {
 		height: 60px;
 	}
+
+	.prog-container {
+		width: 80%;
+	}
+
 
 	.end-screen {
 		height: 75vh;
@@ -374,16 +377,23 @@ progress[value]::-webkit-progress-value {
 	}
 
 	.answer-buttons {
-		width: 48%;
-		margin-right: 5px;
+		width: 40%;
+	}
+
+	.start-button {
+		width: 35%;
+	}
+
+	#game {
+		height: 60vh;
 	}
 
 	.buttons:hover {
 		border: 3px solid #8a4fd1;
 	}
 
-	.answer-buttons:nth-child(2) {
-		margin-right: 0;
+	.answer-buttons:nth-child(2n) {
+		margin-right: 10px;
 	}
 
 	.play-again {
