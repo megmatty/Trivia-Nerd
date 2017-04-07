@@ -99,7 +99,6 @@ function getQuestions(data) {
 	if (response) { //checks to make sure data has arrived
 		buildQuestion(0, 0, 0, response);
 	} 
-	console.log(response);
 }
 
 //Build Questions in DOM
@@ -116,13 +115,14 @@ function buildQuestion(num, correct, incorrect, item) {
 				//math.random + loop to place answers in ids
 				//then assign 'mc-' + makeUniqueRandom + 1
 	activateButtons(num, item[num].correct_answer, correct, incorrect);
-	console.log(item[num].correct_answer);
 }
 
 //Enable-disable answer buttons
 function activateButtons(num, correctAnswer, correct, incorrect) {
+	//unbind any previous correctAnswers
+	$('.answer-buttons').unbind('click');
+	//bind correctAnswer click
 	$('.answer-buttons').bind('click', function(event) {
-					console.log(correctAnswer);
 		$('.answer-buttons').unbind('click'); //one answer click only
 		checkAnswer(num, correctAnswer, this, correct, incorrect);
 	});
