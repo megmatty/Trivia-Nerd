@@ -21,7 +21,7 @@ body {
 
 .container {
 	margin: 0 10px; /*gutter*/
-	padding-top: 10px;
+	padding-top: 5px;
 }
 
 .instr-container {
@@ -109,7 +109,7 @@ body {
 .buttons {
 	padding: 15px;
 	cursor: pointer;
-	border-radius: 40px;
+	border-radius: 10px;
 	border: 3px solid #fff;
   	color: #fff;
 }
@@ -147,6 +147,12 @@ body {
 	margin: 15px 0;
 }
 
+.quit-button {
+	height: 20px;
+	background-color: #F0696F;
+	line-height: 0;
+}
+
 
 /*Answer Button States*/
 
@@ -181,9 +187,9 @@ body {
 }
 
 .star {
-	width: 45px;
+	width: 35px;
 	position: absolute;
-	top: 9.5px;
+	top: 6px;
 	right: -17px;
 }
 
@@ -198,7 +204,7 @@ progress {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	height: 40px;
+	height: 20px;
 	width: 100%;
 	margin: 5% auto;
 	border: none;
@@ -300,7 +306,6 @@ progress[value]::-webkit-progress-value {
 		width: 80%;
 	}
 
-
 	.end-screen {
 		height: 75vh;
 		justify-content: center;
@@ -347,6 +352,12 @@ progress[value]::-webkit-progress-value {
 	.play-again {
 		width: 33.3%;
 	}
+
+	.quit-button {
+		height: 60px;
+		width: 33.3%;
+	}
+
 
 }
 
@@ -408,6 +419,10 @@ progress[value]::-webkit-progress-value {
 		right: -15px;
 	}
 
+	.quit-button {
+		height: 60px;
+		width: 25%;
+	}
 }
 
 

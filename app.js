@@ -96,9 +96,10 @@ var categories = [ //API does not supply categories numbers in JSON response
 //Get Questions
 function getQuestions(data) {
 	response = data; //store json data in this variable
-	if (data ) { //checks to make sure data has arrived
-		buildQuestion(0, 0, 0, data);
+	if (response) { //checks to make sure data has arrived
+		buildQuestion(0, 0, 0, response);
 	} 
+	console.log(response);
 }
 
 //Build Questions in DOM
@@ -115,14 +116,17 @@ function buildQuestion(num, correct, incorrect, item) {
 				//math.random + loop to place answers in ids
 				//then assign 'mc-' + makeUniqueRandom + 1
 	activateButtons(num, item[num].correct_answer, correct, incorrect);
+	console.log(item[num].correct_answer);
 }
 
 //Enable-disable answer buttons
-function activateButtons(num, correctAnswer, correct, incorrect) { 
+function activateButtons(num, correctAnswer, correct, incorrect) {
 	$('.answer-buttons').bind('click', function(event) {
+					console.log(correctAnswer);
 		$('.answer-buttons').unbind('click'); //one answer click only
 		checkAnswer(num, correctAnswer, this, correct, incorrect);
 	});
+
 }
 
 
@@ -208,7 +212,6 @@ $('.category').on('click', function(event) {
 $(".start-button").click(function(event) { 
 	var savedToken = window.localStorage.getItem('userToken');
 	checkToken(savedToken); //token check to see if token valid
-
 		if ($(window).width()> 1000){ //show date display only >1000px
 			$('.last-display').removeClass('hide');
 	    } else {
@@ -236,6 +239,24 @@ $('.play-again').click(function(event) {
 	$(".start-button").show();
 	$('#last-play').text(window.localStorage.getItem('lastDate'));
 });
+
+//Quit Game Button Handler
+$('.quit-button').click(function(event) {
+	$('.answer-buttons').removeClass('green-button');
+	$('.answer-buttons').removeClass('red-button');
+	$('#game').css('display', 'none');
+	$('.instr-container').show(); //show start screen items
+		if ($(window).width()> 1000){ //show date & time display only >1000px
+			$('.last-display').removeClass('hide');
+	    } else {
+	    	$('.last-display').addClass('hide');
+	    }
+	$("#category").show();
+	$(".category").removeClass('green-button'); //reset category button states
+	$(".start-button").show();
+	$('#last-play').text(window.localStorage.getItem('lastDate'));
+});
+
 
 //Display Game Over Screen Text
 function endGameDisplay(correct) {
