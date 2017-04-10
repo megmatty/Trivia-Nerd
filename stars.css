@@ -129,7 +129,7 @@
       100% {
          left: 0;
          top: 0;
-         bottom: -20vh;
+         bottom: -15vh;
          transform: rotate(3000deg);
          opacity: 0;
          transform: scale(.25);
