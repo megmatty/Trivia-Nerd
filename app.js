@@ -135,7 +135,6 @@ function animateBar(correct) {
     max = (correct * 10);
     time = 20;  //speed
     value = progressbar.val();
- 
 
 	var animate = setInterval(function() {
 
@@ -146,11 +145,11 @@ function animateBar(correct) {
 	var loading = function() {
 
 	  value += 0.5; //increment of bar advancement
-	  addValue = progressbar.val(value);  
 
 	  x++;
 
-	 $('body').append('<div class="star-five"></div>');
+	 $('#game').append('<div class="star-five"></div>');
+
 		 
 	  setTimeout(function(x){ 
 	  	var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
@@ -160,7 +159,11 @@ function animateBar(correct) {
 	  	$($('.star-five')[x]).css({
 	  			'left': left,
 	  			'top': top
-				});
+		});
+
+		setTimeout(function(value){
+			progressbar.val(value);
+		}, 2000, value);
 
 	  },50,x);
 

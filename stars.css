@@ -6,7 +6,7 @@
    width: 0px;
    height: 0px;
    top: 0;
-   bottom: 65vh;
+   bottom: 75vh;
    left: 0;
    right: 0;
    border-right:  100px solid transparent;
@@ -71,7 +71,7 @@
    100% {
       left: 0;
       top: 0;
-      bottom: -70vh;
+      bottom: -60vh;
       transform: rotate(3000deg);
       opacity: 0;
       transform: scale(.10);
@@ -82,7 +82,7 @@
 @media screen and (min-width: 767px) {  
 
       .star-five {
-         bottom: 60vh;
+         bottom: 75vh;
          transform: scale(.20);
       }      
 
@@ -112,7 +112,7 @@
 @media screen and (min-width: 1023px) {  
      
        .star-five {
-         bottom: 70vh;
+         bottom: 55vh;
          transform: scale(.25);
       }    
 
@@ -129,7 +129,7 @@
       100% {
          left: 0;
          top: 0;
-         bottom: -15vh;
+         bottom: -35vh;
          transform: rotate(3000deg);
          opacity: 0;
          transform: scale(.25);
