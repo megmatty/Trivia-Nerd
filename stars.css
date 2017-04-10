@@ -1,0 +1,149 @@
+.star-five {
+   margin: auto;
+   position: absolute;
+   display: block;
+   color: gold;
+   width: 0px;
+   height: 0px;
+   top: 0;
+   bottom: 65vh;
+   left: 0;
+   right: 0;
+   border-right:  100px solid transparent;
+   border-bottom: 70px  solid gold;
+   border-left:   100px solid transparent;
+   -moz-transform:    rotate(35deg);
+   -webkit-transform: rotate(35deg);
+   -ms-transform:     rotate(35deg);
+   -o-transform:      rotate(35deg);
+   transition: all 1s;
+   transform: scale(.10);
+   animation: stars 1s forwards ease-in;
+   animation-delay: 1s;
+}
+.star-five:before {
+   border-bottom: 80px solid gold;
+   border-left: 30px solid transparent;
+   border-right: 30px solid transparent;
+   position: absolute;
+   height: 0;
+   width: 0;
+   top: -45px;
+   left: -65px;
+   display: block;
+   content: '';
+   -webkit-transform: rotate(-35deg);
+   -moz-transform:    rotate(-35deg);
+   -ms-transform:     rotate(-35deg);
+   -o-transform:      rotate(-35deg);
+
+}
+.star-five:after {
+   position: absolute;
+   display: block;
+   color: gold;
+   top: 3px;
+   left: -105px;
+   width: 0px;
+   height: 0px;
+   border-right: 100px solid transparent;
+   border-bottom: 70px solid gold;
+   border-left: 100px solid transparent;
+   -webkit-transform: rotate(-70deg);
+   -moz-transform:    rotate(-70deg);
+   -ms-transform:     rotate(-70deg);
+   -o-transform:      rotate(-70deg);
+   content: '';
+}
+
+/*Star Animation*/
+
+@keyframes stars {
+   0% {
+      transform: scale(.10);
+   }
+
+   90% {
+      opacity: 1;
+      transform: scale(.10);
+   }
+
+   100% {
+      left: 0;
+      top: 0;
+      bottom: -70vh;
+      transform: rotate(3000deg);
+      opacity: 0;
+      transform: scale(.10);
+   }
+
+}
+
+@media screen and (min-width: 767px) {  
+
+      .star-five {
+         bottom: 60vh;
+         transform: scale(.20);
+      }      
+
+      @keyframes stars {
+      0% {
+         transform: scale(.20);
+      }
+
+      90% {
+         opacity: 1;
+         transform: scale(.20);
+      }
+
+      100% {
+         left: 0;
+         top: 0;
+         bottom: -55vh;
+         transform: rotate(3000deg);
+         opacity: 0;
+         transform: scale(.20);
+      }
+
+   }
+
+}
+
+@media screen and (min-width: 1023px) {  
+     
+       .star-five {
+         bottom: 60vh;
+         transform: scale(.25);
+      }    
+
+      @keyframes stars {
+      0% {
+         transform: scale(.25);
+      }
+
+      90% {
+         opacity: 1;
+         transform: scale(.25);
+      }
+
+      100% {
+         left: 0;
+         top: 0;
+         bottom: -20vh;
+         transform: rotate(3000deg);
+         opacity: 0;
+         transform: scale(.25);
+      }
+
+   }
+
+}
+
+
+
+
+
+
+
+
+

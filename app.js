@@ -119,8 +119,6 @@ function buildQuestion(num, correct, incorrect, item) {
 
 //Enable-disable answer buttons
 function activateButtons(num, correctAnswer, correct, incorrect) {
-	//unbind any previous correctAnswers
-	$('.answer-buttons').unbind('click');
 	//bind correctAnswer click
 	$('.answer-buttons').bind('click', function(event) {
 		$('.answer-buttons').unbind('click'); //one answer click only
@@ -130,25 +128,51 @@ function activateButtons(num, correctAnswer, correct, incorrect) {
 }
 
 
-//Animate progress bar
+//Animate progress bar & stars
 function animateBar(correct) {
 	var progressbar = $('#score-bar'); 
+	var x = 0; 
     max = (correct * 10);
     time = 20;  //speed
     value = progressbar.val();
  
-  var loading = function() {
-      value += 0.5; //increment of bar advancement
-      addValue = progressbar.val(value);
- 
-      if (value > max) {
-          clearInterval(animate);                
-      }
-  };
- 
-  var animate = setInterval(function() {
-      loading();
-  }, time);
+
+	var animate = setInterval(function() {
+
+	      loading();
+
+	}, time);
+
+	var loading = function() {
+
+	  value += 0.5; //increment of bar advancement
+	  addValue = progressbar.val(value);  
+
+	  x++;
+
+	 $('body').append('<div class="star-five"></div>');
+		 
+	  setTimeout(function(x){ 
+	  	var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+	  	var left = (Math.floor(Math.random() * window.innerWidth) + 1 ) / 2 * plusOrMinus;
+	  	var top = (Math.floor(Math.random() * window.innerHeight) + 1 ) / 2 * plusOrMinus;
+
+	  	$($('.star-five')[x]).css({
+	  			'left': left,
+	  			'top': top
+				});
+
+	  },50,x);
+
+	  if (value > max) {
+	      clearInterval(animate);             
+	  }
+	};
+
+	setTimeout(function() {
+		$('.star-five').remove();
+	}, 3000);
+
 }
 
 
@@ -159,7 +183,7 @@ function checkAnswer(num, correctAnswer, button, correct, incorrect) {
 		correct++; //score correct
 		$('#right-sfx')[0].play(); //play right answer sfx
 		animateBar(correct); //advance progress bar
-		$(button).addClass('green-button').stop().delay(2000).queue(function() { //light green and wait
+		$(button).addClass('green-button').stop().delay(3000).queue(function() { //light green and wait
 			nextQuestion(num, correct, incorrect); //get next question
 		});
 		
@@ -255,6 +279,7 @@ $('.quit-button').click(function(event) {
 	$(".category").removeClass('green-button'); //reset category button states
 	$(".start-button").show();
 	$('#last-play').text(window.localStorage.getItem('lastDate'));
+	$('.answer-buttons').unbind('click'); 	//unbind any previous correctAnswers
 });
 
 
