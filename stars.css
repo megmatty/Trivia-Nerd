@@ -112,7 +112,7 @@
 @media screen and (min-width: 1023px) {  
      
        .star-five {
-         bottom: 60vh;
+         bottom: 65vh;
          transform: scale(.25);
       }    
 
@@ -129,7 +129,7 @@
       100% {
          left: 0;
          top: 0;
-         bottom: -15vh;
+         bottom: -25vh;
          transform: rotate(3000deg);
          opacity: 0;
          transform: scale(.25);
